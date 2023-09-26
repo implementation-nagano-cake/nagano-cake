@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   
-  root :to => 'homes#top'
+  root :to => 'public/homes#top'
   get 'homes/about' => 'homes#about', as: 'about'
   resources :items, only: [:index, :show]
   resources :cart_items, only: [:index, :create, :update, :destroy]
