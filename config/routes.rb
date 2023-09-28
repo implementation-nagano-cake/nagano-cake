@@ -9,16 +9,16 @@ Rails.application.routes.draw do
   }
   
   root :to => 'public/homes#top'
-  get 'homes/about' => 'homes#about', as: 'about'
-  resources :items, only: [:index, :show]
-  resources :cart_items, only: [:index, :create, :update, :destroy]
-  delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
-  resources :customers, only: [:show, :edit, :update]
-  get 'customers/check' => 'customers#check', as: 'customer_check'
-  patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
-  resources :orders, only: [:new, :index, :show, :create]
-  post 'orders/check' => 'orders#check', as: 'order_check'
-  get 'orders/complete' => 'orders#complete', as: 'complete'
+  get '/about' => 'public/homes#about', as: 'about'
+  resources :items, only: [:index, :show], controller: 'public/items'
+  resources :cart_items, only: [:index, :create, :update, :destroy], controller: 'public/cart_items'
+  delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all', as: 'destroy_all'
+  resources :customers, only: [:show, :edit, :update], controller: 'public/customers'
+  get 'customers/check' => 'public/customers#check', as: 'customer_check'
+  patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
+  resources :orders, only: [:new, :index, :show, :create], controller: 'public/orders'
+  post 'orders/check' => 'public/orders#check', as: 'order_check'
+  get 'orders/complete' => 'public/orders#complete', as: 'complete'
   
   # 管理者用
   # URL /admin/sign_in ...
