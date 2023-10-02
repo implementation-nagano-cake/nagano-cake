@@ -14,6 +14,6 @@ class Customer < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :telephone_number, presence: true
-  # validates :is_active, inclusion: [true, false]
+  validates :is_active, inclusion: { in: [true, false] }
 
 end
