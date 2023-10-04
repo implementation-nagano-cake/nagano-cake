@@ -6,7 +6,25 @@
   </div>
   <div class="row">
     <div class="col">
-      <%= form_with
+      <%= form_with model: @item do |f| %>
+        <div class="row">
+          <label>item image</label>
+           <%= f.file_field :image %>
+        </div>
+        <div class="row">
+          <label>item name</label>
+          <%= f.text_field :name %>
+        </div>
+        <div class="row">
+          <label>item introduction</label>
+          <%= f.text_area :introduction %>
+        </div>
+        <div class="row">
+          <label>item price</label>
+          <%= f.text_field :price %>
+        </div>
+        
+      <% end %>
     </div>
   </div>
 </div>

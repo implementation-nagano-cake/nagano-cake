@@ -4,7 +4,17 @@
       
     </div>
     <div class="col-8 offset-1">
-      <h3>item index</h3>
+      <div class="row">
+        <h3>item index</h3>
+      </div>
+      
+      <div class="row">
+        <% @items.each do |item| %>
+          <% item.image %>
+          <% item.name %>
+          <% item.price %>
+        <% end %>
+      </div>
       
     </div>
   </div>

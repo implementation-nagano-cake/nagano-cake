@@ -1,5 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
+    @items = Item.all
   end
 
   def create
