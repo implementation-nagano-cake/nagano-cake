@@ -10,9 +10,11 @@
       
       <div class="row">
         <% @items.each do |item| %>
-          <% item.image %>
-          <% item.name %>
-          <% item.price %>
+          <%= link_to item_path(item.id) do %>
+                  <%= image_tag item.get_image(320, 180) %>
+                <% end %>
+          <%= item.name %>
+          <%= item.price %>
         <% end %>
       </div>
       

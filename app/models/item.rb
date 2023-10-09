@@ -16,4 +16,8 @@ class Item < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
   
+  def price_including_tax
+    (self.price * 1.1).round
+  end
+  
 end
