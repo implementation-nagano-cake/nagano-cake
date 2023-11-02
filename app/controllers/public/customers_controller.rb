@@ -9,7 +9,7 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
-    @customer.update
+    @customer.update(customer_params)
     redirect_to customer_path
   end
 
@@ -28,7 +28,11 @@ class Public::CustomersController < ApplicationController
   private
   
   def customer_params
-    params.require(:customer).permit()
+    params.require(:customer).permit(
+      :last_name, :last_name_kana,
+      :first_name, :first_name_kane,
+      :email, :postal_code, :address, :telephone_number
+      )
   end
   
 end

@@ -1,5 +1,46 @@
 <h1>Public::CartItems#index</h1>
 <p>Find me in app/views/public/cart_items/index.html.erb</p>
 
-<% @items.each do |item| %>
-<% end %>
+<h4>ショッピングカート</h4>
+<table>
+   <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th></th>
+   </tr>
+     <% total = 0 %>
+
+ <%# if current_customer.cart_items.present? %> 
+    <% @cart_items.each do |cart_item| %> 
+      <tr>
+        <td>
+          <%= attachment_image_tag(cart_item.item, :image, size: "60x50", fallback: "no_image.jpg") %> 
+          <%= cart_item.item.name %>
+        </td>
+        <td><%= (cart_item.item.price*1.08).to_i %></td>　<!-- 商品単価(価格×1.08) -->
+        <td>
+          <%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method: :patch do |f| %>
+            <%= f.number_field :amount, min: 1, max:10, id: "amount_cart"%>
+            <%= f.submit "変更",class: "btn btn-success" %> 
+          <% end %>
+        </td>
+        <td>
+          <% subtotal = ((cart_item.item.price*cart_item.quantity)*1.08).to_i %>　<!--小計を計算する-->
+          <%= subtotal %> 
+        </td>
+        <td>
+          <%= link_to "商品をカートから削除する", cart_item_path(cart_item.id, cart_item), method: :delete, class: "btn btn-danger" %>
+        </td>
+      </tr>
+      <!--アイテムごとに合計金額totalに反映 計算しておく-->
+      <% total += subtotal %>　
+    <% end %>
+  <%# end %>
+   <tr>    
+    <th>合計金額</th>
+    <td><%= total %></td>
+   </tr>
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------->

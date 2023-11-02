@@ -1,8 +1,7 @@
+<h1>Public::Items#index</h1>
+<p>Find me in app/views/public/items/index.html.erb</p>
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      
-    </div>
     <div class="col-8 offset-1">
       <div class="row">
         <h3>item index</h3>
@@ -11,8 +10,8 @@
       <div class="row">
         <% @items.each do |item| %>
           <%= link_to item_path(item.id) do %>
-                  <%= image_tag item.get_image(320, 180) %>
-                <% end %>
+            <%= image_tag item.get_image(100, 100) %>
+          <% end %>
           <%= item.name %>
           <%= item.price %>
         <% end %>
@@ -21,6 +20,3 @@
     </div>
   </div>
 </div>
-
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>

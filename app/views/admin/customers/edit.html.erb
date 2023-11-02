@@ -1,2 +1,79 @@
 <h1>Admin::Customers#edit</h1>
 <p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h3><%= @customer.full_name %>さんの会員情報編集</h3>
+  </div>
+  <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
+    <% render "admin/shared/error_messages", resource: @customer %>
+
+    <div class="row">
+      <label class="col-lg-3">名前</label>
+      <div class="col-lg-3">
+        <%= f.text_field :last_name, autoforcus: true, autocomplete: "last_name",  placeholder: "山田" %>
+      </div>
+      <div class="col-lg-3">
+        <%= f.text_field :first_name, autoforcus: true, autocomplete: "first_name",  placeholder: "令和" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-lg-3">フリガナ</label>
+      <div class="col-lg-3">
+        <%= f.text_field :last_name_kana, autoforcus: true, autocomplete: "kana_last_name",  placeholder: "ヤマダ" %>
+      </div>
+      <div class="col-lg-3">
+        <%= f.text_field :first_name_kana, autoforcus: true, autocomplete: "kana_first_name",  placeholder: "レイワ" %>
+      </div>
+    </div><br>
+      
+    <div class="row">
+      <label class="col-lg-3">郵便番号（ハイフンなし）</label>
+      <div class="col-lg-3">
+        <%= f.text_field :postal_code, autoforcus: true, autocomplete: "postal_code", placeholder: "0001234" %>
+      </div>
+    </div><br>
+      
+    <div class="row">
+      <label class="col-lg-3">住所</label>
+      <div class="col-lg-3">
+        <%= f.text_field :address, autoforcus: true, autocomplete: "address", size: 60, placeholder: "東京都港区赤坂2-11-7 WEBCAMPマンション201号室" %>
+      </div>
+    </div><br>
+      
+    <div class="row">
+      <label class="col-lg-3">電話番号（ハイフンなし）</label>
+      <div class="col-lg-3">
+        <%= f.text_field :telephone_number, autoforcus: true, autocomplete: "telephone_number",  placeholder: "08012345678" %>
+      </div>
+    </div><br>
+
+    <div class="row">
+      <label class="col-lg-3">メールアドレス</label>
+      <div class="col-lg-3">
+        <%= f.text_field :email, autoforcus: true, autocomplete: "email",  placeholder: "sample@exanple.com" %>
+      </div>
+    </div><br>
+
+    <div class="row">
+      <label class="col-lg-3">会員ステータス</label>
+      <div class="col-lg-3">
+        <%= f.radio_button :is_active, :true %>
+        <%= f.label :is_active, "有効", { value: :true } %>
+        <%= f.radio_button :is_active, :false %>
+        <%= f.label :is_active, "退会済み", { value: :false } %>
+      </div>
+    </div><br>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-9"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>

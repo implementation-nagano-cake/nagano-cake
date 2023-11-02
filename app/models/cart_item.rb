@@ -6,4 +6,9 @@ class CartItem < ApplicationRecord
   validates :item_id, presence: true
   validates :customer_id, presence: true
   validates :amount, presence: true
+  
+  def subtotal
+    item.price_including_tax * amount
+  end
+  
 end
